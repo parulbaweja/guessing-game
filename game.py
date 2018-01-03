@@ -8,7 +8,6 @@ print "{name}, I'm thinking of a number between 1 and 100".format(name=name)
 print "Try to guess my number"
 
 num = random.randint(1, 100)
-print num
 num_guesses = 1
 
 while True:
