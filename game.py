@@ -10,24 +10,32 @@ print "Try to guess my number"
 
 num = random.randint(1, 100)
 print num
-num_guesses = 1
+
+num_guesses = 0
 
 while True:
     guess = raw_input("Your guess?")
-    guess = int(guess)
-    # num_guesses = 1
+    
+
+    try:
+        guess = int(guess)
+    except ValueError:
+        print "That's not a number! Try again with a valid number."
+        continue
+
+    
     if guess < 1 or guess > 100:
-        print "That's not between 1 and 100. Try again with a valid number."
-        num_guesses += 1
+        print "That's not between 1 and 100! Try again with a valid number."
+        continue
+
+    num_guesses += 1
+
+    if guess > num:
+        print "Your guess was too high, try again."
+    elif guess < num:
+        print "Your guess was too low, try again."
     else:
-        if guess != num:
-            if guess > num:
-                print "Your guess was too high, try again."
-            else:
-                print "Your guess was too low, try again."
-            num_guesses += 1
-        else:
-            response = "Well, done, {name}! You found my number in {n} tries!"
-            print response.format(name=name, n=num_guesses)
-            # response = "Well, done, {}! You found my number in {} tries!".format(name, num_guesses)
-            break
+        response = "Well, done, {name}! You found my number in {n} tries!"
+        print response.format(name=name, n=num_guesses)
+        # response = "Well, done, {}! You found my number in {} tries!".format(name, num_guesses)
+        break
